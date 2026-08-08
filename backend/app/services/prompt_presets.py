@@ -1,0 +1,33 @@
+SCENE_PRESETS = {
+    "white_amazon": {
+        "label": "White Amazon",
+        "prompt": "single product centered on a pure white cyclorama, broad softbox lighting, subtle grounding reflection, clean ecommerce catalog photograph",
+    },
+    "luxury_studio": {
+        "label": "Luxury studio",
+        "prompt": "single product on a dark polished stone pedestal, charcoal studio backdrop, warm rim lights, dramatic spotlight, premium fragrance advertising campaign",
+    },
+    "wooden_table": {
+        "label": "Wooden table",
+        "prompt": "single product on a richly grained oak tabletop, warm window light, sunlit interior and shelves softly blurred in the background",
+    },
+    "coffee_shop": {
+        "label": "Coffee shop",
+        "prompt": "single product on a cafe table, cozy coffee shop interior, amber pendant lights and espresso bar bokeh, shallow depth of field",
+    },
+    "office_desk": {
+        "label": "Office desk",
+        "prompt": "single product on a clean walnut office desk, bright window daylight, modern laptop and green plant softly out of focus",
+    },
+    "marble_surface": {
+        "label": "Marble surface",
+        "prompt": "single product on veined white Carrara marble, airy premium vanity setting, diffused daylight, elegant beauty advertising photograph",
+    },
+    "outdoor_lifestyle": {
+        "label": "Outdoor lifestyle",
+        "prompt": "single product on natural stone in a lush green garden, leaves and warm sunlight bokeh, fresh outdoor lifestyle advertising photograph",
+    },
+}
+
+BASE_POSITIVE_SUFFIX = "professional product photography, realistic lighting, commercial marketing image, sharp focus, clean composition"
+BASE_NEGATIVE_PROMPT = "duplicate product, extra product, floating product, distorted silhouette, warped geometry, changed logo, unreadable label, watermark, low resolution, motion blur, noisy"
