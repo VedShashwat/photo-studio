@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install API test dependencies
+        run: python -m pip install -e './backend[dev]'
+      - name: Test API
+        run: PYTHONPATH=backend:. python -m pytest -q backend/app/tests
+      - name: Test worker orchestration
+        run: PYTHONPATH=worker:. python -m pytest -q worker/app/tests
+      - name: Compile Python sources
+        run: python -m compileall -q backend/app worker/app shared/python
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: cp .env.example .env
+      - run: docker compose config >/dev/null
+      - run: docker compose --profile gpu config >/dev/null
